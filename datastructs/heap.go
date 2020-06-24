@@ -21,14 +21,17 @@ type Heap struct {
 向上修复 O(logN)
 */
 func (heap *Heap) ShiftUp(index uint) {
-	if index > 0 && index < heap.len {
-		parent := uint(math.Floor(float64((index - 1) / 2)))
-		if heap.comp(heap.data[index], heap.data[parent]) {
-			heap.data[index], heap.data[parent] = heap.data[parent], heap.data[index]
-			//fmt.Printf("child<->parent:%d,%d\r\n", index, parent)
+	for {
+		if index > 0 && index < heap.len {
+			parent := uint(math.Floor(float64((index - 1) / 2)))
+			if heap.comp(heap.data[index], heap.data[parent]) {
+				heap.data[index], heap.data[parent] = heap.data[parent], heap.data[index]
+				//fmt.Printf("child<->parent:%d,%d\r\n", index, parent)
+			}
+			index = parent
+		} else {
+			break
 		}
-
-		heap.ShiftUp(parent)
 	}
 }
 
@@ -36,21 +39,27 @@ func (heap *Heap) ShiftUp(index uint) {
 向下修复 O(logN)
 */
 func (heap *Heap) ShiftDown(index uint) {
-	if index >= 0 && index < heap.len {
-		left := 2*index + 1
-		right := 2*index + 2
-		if left < heap.len {
-			if right < heap.len {
-				if heap.comp(heap.data[right] , heap.data[left]) {
-					left = right
+	for {
+		if index >= 0 && index < heap.len {
+			left := 2*index + 1
+			right := 2*index + 2
+			if left < heap.len {
+				if right < heap.len {
+					if heap.comp(heap.data[right], heap.data[left]) {
+						left = right
+					}
 				}
-			}
-			if heap.comp(heap.data[left] , heap.data[index]) {
-				heap.data[left], heap.data[index] = heap.data[index], heap.data[left]
-				//fmt.Printf("child<->parent:%d,%d\r\n", left, index)
-			}
+				if heap.comp(heap.data[left], heap.data[index]) {
+					heap.data[left], heap.data[index] = heap.data[index], heap.data[left]
+					//fmt.Printf("child<->parent:%d,%d\r\n", left, index)
+				}
 
-			heap.ShiftDown(left)
+				index = left
+			} else {
+				break
+			}
+		} else {
+			break
 		}
 	}
 }
@@ -65,8 +74,8 @@ func Create(cap uint, comp CompareFun) *Heap {
 }
 
 /**
-	O(logN)
- */
+O(logN)
+*/
 func (heap *Heap) Insert(element int) bool {
 	if heap.len >= heap.cap {
 		//扩容
@@ -84,7 +93,7 @@ func (heap *Heap) Insert(element int) bool {
 }
 
 /**
-	O(logN)
+O(logN)
 */
 func (heap *Heap) Remove() interface{} {
 	if heap.isEmpty() {
@@ -113,7 +122,7 @@ func (heap Heap) isEmpty() bool {
 }
 
 /**
-	O(N)
+O(N)
 */
 func (heap *Heap) RemoveAtIndex(index uint) interface{} {
 	if heap.isEmpty() {
@@ -138,7 +147,7 @@ func (heap *Heap) RemoveAtIndex(index uint) interface{} {
 }
 
 /**
-	O(logN)
+O(logN)
 */
 func (heap *Heap) Replace(index uint, element int) bool {
 	if heap.isEmpty() {
