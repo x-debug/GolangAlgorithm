@@ -5,8 +5,6 @@ import (
 	"math"
 )
 
-type CompareFun func(a interface{}, b interface{}) bool
-
 /**
 最小堆
 */
@@ -64,7 +62,7 @@ func (heap *Heap) ShiftDown(index uint) {
 	}
 }
 
-func Create(cap uint, comp CompareFun) *Heap {
+func CreateHeap(cap uint, comp CompareFun) *Heap {
 	heap := new(Heap)
 	heap.len = 0
 	heap.cap = cap

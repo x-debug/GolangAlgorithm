@@ -12,7 +12,7 @@ func comp(a interface{}, b interface{}) bool {
 
 //测试大数据量下的构建
 func TestHeap_Insert(t *testing.T) {
-	heap := Create(10000, comp)
+	heap := CreateHeap(10000, comp)
 	fmt.Println(heap)
 	for i := 0; i < 1000; i++ {
 		heap.Insert(i + 1)
@@ -23,7 +23,7 @@ func TestHeap_Insert(t *testing.T) {
 
 //测试扩容
 func TestHeap_Insert2(t *testing.T) {
-	heap := Create(10, comp)
+	heap := CreateHeap(10, comp)
 	fmt.Println(heap)
 	for i := 0; i < 200; i++ {
 		heap.Insert(i + 1)
@@ -33,7 +33,7 @@ func TestHeap_Insert2(t *testing.T) {
 }
 
 func TestHeap_Remove(t *testing.T) {
-	heap := Create(100, comp)
+	heap := CreateHeap(100, comp)
 	heap.Insert(4)
 	heap.Insert(3)
 	heap.Insert(2)
@@ -55,7 +55,7 @@ func TestHeap_Remove(t *testing.T) {
 
 //测试缩容
 func TestHeap_Remove2(t *testing.T) {
-	heap := Create(10, comp)
+	heap := CreateHeap(10, comp)
 	fmt.Println(heap)
 	for i := 0; i < 200; i++ {
 		heap.Insert(i + 1)
@@ -70,7 +70,7 @@ func TestHeap_Remove2(t *testing.T) {
 }
 
 func TestHeap_Replace(t *testing.T) {
-	heap := Create(100, comp)
+	heap := CreateHeap(100, comp)
 	heap.Insert(4)
 	heap.Insert(3)
 	heap.Insert(2)
@@ -89,7 +89,7 @@ func TestHeap_Replace(t *testing.T) {
 }
 
 func TestHeap_RemoveAtIndex(t *testing.T) {
-	heap := Create(100, comp)
+	heap := CreateHeap(100, comp)
 	heap.Insert(4)
 	heap.Insert(3)
 	heap.Insert(2)
