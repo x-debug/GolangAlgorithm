@@ -4,7 +4,11 @@ Heap[Done]
 
 WAL
 
-Double LinkList
+Double Linked List
+
+Singly Linked List[Done]
+
+Circular Linked List
 
 LRU
 
