@@ -8,7 +8,7 @@ Double Linked List
 
 Singly Linked List[Done]
 
-Circular Linked List
+Circular Linked List[Done]
 
 LRU
 
