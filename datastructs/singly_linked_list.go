@@ -86,6 +86,7 @@ func (sll *SinglyLinkedList) DeleteNode(data interface{}) interface{} {
 				prev.next = p.next
 			}
 			sll.size--
+			return p.data
 		}
 
 		prev = p
