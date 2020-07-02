@@ -130,6 +130,36 @@ func TestCircularLinkedList_DeleteNode(t *testing.T) {
 	lookNodesCircular(sll, t)
 }
 
+func TestCircularLinkedList_DeleteNode2(t *testing.T) {
+	sll := CreateCircularLinkedList(compCircularLinkedList)
+	sll.AddAtEnd("hello")
+	sll.AddAtFront("world")
+	sll.AddAtFront("google")
+	sll.AddAtEnd("sorry")
+	sll.AddAtEnd("baidu")
+
+	//google world hello sorry baidu
+
+	sll.DeleteNode("google")
+	sll.DeleteNode("sorry123")
+	if sll.Size() != 4 {
+		t.Error("个数出现了问题")
+	}
+
+	sll.AddAtFront("fuck")
+	if sll.Size() != 5 {
+		t.Error("个数出现了问题")
+	}
+
+	sll.DeleteNode("fuck")
+	if sll.Size() != 4 {
+		t.Error("个数出现了问题")
+	}
+
+	lookupCircular(sll, t)
+	lookNodesCircular(sll, t)
+}
+
 func TestCircularLinkedList_Search(t *testing.T) {
 	sll := CreateCircularLinkedList(compCircularLinkedList)
 	sll.AddAtEnd("hello")

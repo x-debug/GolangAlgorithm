@@ -77,7 +77,14 @@ func (sll *SinglyLinkedList) Search(data interface{}) interface{} {
 	return nil
 }
 
+/**
+O(N)
+*/
 func (sll *SinglyLinkedList) DeleteNode(data interface{}) interface{} {
+	if sll.IsEmpty() {
+		return false
+	}
+
 	var prev *SinglyLinkedListNode = nil
 
 	for p := sll.head; p != nil; p = p.next {
@@ -85,6 +92,15 @@ func (sll *SinglyLinkedList) DeleteNode(data interface{}) interface{} {
 			if prev != nil {
 				prev.next = p.next
 			}
+
+			if sll.head == p {
+				sll.head = sll.head.next
+			}
+
+			if sll.tail == p {
+				sll.tail = prev
+			}
+
 			sll.size--
 			return p.data
 		}
@@ -93,4 +109,38 @@ func (sll *SinglyLinkedList) DeleteNode(data interface{}) interface{} {
 	}
 
 	return nil
+}
+
+/**
+O(N)
+*/
+func (sll *SinglyLinkedList) DeleteElement(node *SinglyLinkedListNode) bool {
+	if sll.IsEmpty() {
+		return false
+	}
+
+	var prev *SinglyLinkedListNode = nil
+
+	for p := sll.head; p != nil; p = p.next {
+		if p == node {
+			if prev != nil {
+				prev.next = p.next
+			}
+
+			if sll.head == p {
+				sll.head = sll.head.next
+			}
+
+			if sll.tail == p {
+				sll.tail = prev
+			}
+
+			sll.size--
+			return true
+		}
+
+		prev = p
+	}
+
+	return false
 }

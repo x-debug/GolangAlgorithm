@@ -98,6 +98,15 @@ func (cll *CircularLinkedList) DeleteNode(data interface{}) interface{} {
 			if prev != nil {
 				prev.next = p.next
 			}
+
+			if cll.head == p {
+				cll.head = cll.head.next
+			}
+
+			if cll.tail == p {
+				cll.tail = prev
+			}
+
 			cll.size--
 			return p.data
 		}

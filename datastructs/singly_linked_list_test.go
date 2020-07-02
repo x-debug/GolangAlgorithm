@@ -129,6 +129,59 @@ func TestSinglyLinkedList_DeleteNode(t *testing.T) {
 	lookNodes(sll, t)
 }
 
+func TestSinglyLinkedList_DeleteNode2(t *testing.T) {
+	sll := CreateLinkedList(compLinkedList)
+	sll.AddAtEnd("hello")
+	sll.AddAtFront("world")
+	sll.AddAtFront("google")
+	sll.AddAtEnd("sorry")
+	sll.AddAtEnd("baidu")
+
+	//google world hello sorry baidu
+
+	sll.DeleteNode("google")
+	sll.DeleteNode("sorry123")
+	if sll.Size() != 4 {
+		t.Error("个数出现了问题")
+	}
+
+	sll.AddAtFront("fuck")
+	if sll.Size() != 5 {
+		t.Error("个数出现了问题")
+	}
+	sll.DeleteNode("fuck")
+	if sll.Size() != 4 {
+		t.Error("个数出现了问题")
+	}
+	lookup(sll, t)
+	lookNodes(sll, t)
+}
+
+func TestSinglyLinkedList_DeleteElement(t *testing.T) {
+	sll := CreateLinkedList(compLinkedList)
+	sll.AddAtEnd("hello")
+	sll.AddAtFront("world")
+	sll.AddAtFront("google")
+	sll.AddAtEnd("sorry")
+	sll.AddAtEnd("baidu")
+
+	//google world hello sorry baidu
+
+	sll.DeleteElement(sll.head)//1
+	sll.DeleteNode("sorry123")
+	if sll.Size() != 4 {
+		t.Error("个数出现了问题")
+	}
+
+	sll.DeleteElement(sll.head)//1
+	sll.DeleteElement(sll.tail)//1
+	if sll.Size() != 2 {
+		t.Error("个数出现了问题")
+	}
+	lookup(sll, t)
+	lookNodes(sll, t)
+}
+
 func TestSinglyLinkedList_Search(t *testing.T) {
 	sll := CreateLinkedList(compLinkedList)
 	sll.AddAtEnd("hello")
