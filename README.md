@@ -12,6 +12,8 @@
 
 - [x] MultiSet
 
+- [x] Stack
+
 SkipList :muscle:
 
 Sort :muscle:
@@ -19,8 +21,6 @@ Sort :muscle:
 Binary Search
 
 Queue :muscle:
-
-Stack :muscle:
 
 HashTable
 
