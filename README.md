@@ -10,7 +10,7 @@ Singly Linked List[Done]
 
 Circular Linked List[Done]
 
-LRU
+LRU[Done]
 
 SkipList
 
