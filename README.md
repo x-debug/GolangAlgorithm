@@ -4,7 +4,7 @@ Heap[Done]
 
 WAL
 
-Double Linked List
+Double Linked List[Done]
 
 Singly Linked List[Done]
 
