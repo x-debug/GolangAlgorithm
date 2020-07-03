@@ -27,6 +27,13 @@ func CreateDoublyLinkedList(compare CompareFun) *DoublyLinkedList {
 	return dll
 }
 
+func CreateDoublyLinkedListNode(data interface{}) *DoublyLinkedListNode {
+	node := new(DoublyLinkedListNode)
+	node.data = data
+
+	return node
+}
+
 func (dll *DoublyLinkedList) AddFront(data interface{}) bool {
 	node := new(DoublyLinkedListNode)
 	node.data = data
