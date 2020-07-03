@@ -1,17 +1,29 @@
 # GolangAlgorithm
 
-Heap[Done]
+- [x] Heap
+
+- [x] Double Linked List
+
+- [x] Singly Linked List
+
+- [x] Circular Linked List
+
+- [x] LRU
+
+- [x] MultiSet
+
+SkipList :muscle:
+
+Sort :muscle:
+
+Binary Search
+
+Queen
+
+Stack
+
+HashTable
 
 WAL
 
-Double Linked List[Done]
 
-Singly Linked List[Done]
-
-Circular Linked List[Done]
-
-LRU[Done]
-
-SkipList
-
-MultiSet[Done]
