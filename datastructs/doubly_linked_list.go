@@ -30,6 +30,11 @@ func CreateDoublyLinkedList(compare CompareFun) *DoublyLinkedList {
 func (dll *DoublyLinkedList) AddFront(data interface{}) bool {
 	node := new(DoublyLinkedListNode)
 	node.data = data
+
+	return dll.AddFrontAt(node)
+}
+
+func (dll *DoublyLinkedList) AddFrontAt(node *DoublyLinkedListNode) bool {
 	node.prev = nil
 
 	if dll.size == 0 { //it is empty
@@ -46,9 +51,7 @@ func (dll *DoublyLinkedList) AddFront(data interface{}) bool {
 	return true
 }
 
-func (dll *DoublyLinkedList) AddEnd(data interface{}) bool {
-	node := new(DoublyLinkedListNode)
-	node.data = data
+func (dll *DoublyLinkedList) AddEndAt(node *DoublyLinkedListNode) bool {
 	node.next = nil
 
 	if dll.size == 0 { //it is empty
@@ -63,6 +66,13 @@ func (dll *DoublyLinkedList) AddEnd(data interface{}) bool {
 
 	dll.size++
 	return true
+}
+
+func (dll *DoublyLinkedList) AddEnd(data interface{}) bool {
+	node := new(DoublyLinkedListNode)
+	node.data = data
+
+	return dll.AddEndAt(node)
 }
 
 func (dll *DoublyLinkedList) AddBefore(at *DoublyLinkedListNode, data interface{}) bool {
