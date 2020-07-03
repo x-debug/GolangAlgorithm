@@ -18,7 +18,12 @@
 
 SkipList :muscle:
 
-Sort :muscle:
+Sort :muscle: 
+* Insertion Sort
+* Merge Sort
+* Quick Sort
+* Shell Sort
+* Heap Sort
 
 Binary Search
 
