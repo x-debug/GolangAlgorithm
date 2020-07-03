@@ -18,9 +18,9 @@ Sort :muscle:
 
 Binary Search
 
-Queue
+Queue :muscle:
 
-Stack
+Stack :muscle:
 
 HashTable
 
