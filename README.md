@@ -14,13 +14,13 @@
 
 - [x] Stack
 
+- [x] Queue
+
 SkipList :muscle:
 
 Sort :muscle:
 
 Binary Search
-
-Queue :muscle:
 
 HashTable
 
