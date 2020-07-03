@@ -18,7 +18,7 @@ Sort :muscle:
 
 Binary Search
 
-Queen
+Queue
 
 Stack
 
