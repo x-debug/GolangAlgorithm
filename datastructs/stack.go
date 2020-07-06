@@ -19,8 +19,8 @@ func (s *Stack) Pop() interface{} {
 	if s.IsEmpty() {
 		return nil
 	}
-	data := s.impl.head.data
-	s.impl.DeleteElement(s.impl.head)
+	data := s.impl.Head.Data
+	s.impl.DeleteElement(s.impl.Head)
 
 	return data
 }

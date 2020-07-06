@@ -48,8 +48,8 @@ func TestStack_Pop(t *testing.T) {
 
 func stackOrderNodes(right []string, s *Stack, t *testing.T) {
 	var i int = 0
-	for p := s.impl.head; p != nil; p = p.next {
-		if right[i] != p.data {
+	for p := s.impl.Head; p != nil; p = p.Next {
+		if right[i] != p.Data {
 			t.Error("元素次序不对")
 		}
 

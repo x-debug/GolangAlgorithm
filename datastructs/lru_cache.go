@@ -38,7 +38,7 @@ func (lru LRUCache) Get(key string) (interface{}, bool) {
 		//放到头结点上去
 		lru.cacheList.DeleteNode(ele.ptr)
 		lru.cacheList.AddFrontAt(ele.ptr)
-		return ele.ptr.data, true
+		return ele.ptr.Data, true
 	}
 
 	return nil, false
@@ -53,8 +53,8 @@ func (lru *LRUCache) Set(key string, value interface{}) bool {
 		//淘汰最近没访问过的数据
 		lru.size++
 		if lru.size > lru.maxSize {
-			delete(lru.cacheMap, lru.cacheList.tail.data.(*LRULinkedElement).key)
-			lru.cacheList.DeleteNode(lru.cacheList.tail)
+			delete(lru.cacheMap, lru.cacheList.Tail.Data.(*LRULinkedElement).key)
+			lru.cacheList.DeleteNode(lru.cacheList.Tail)
 			lru.size--
 		}
 		ele = new(LRUElement)
@@ -64,10 +64,10 @@ func (lru *LRUCache) Set(key string, value interface{}) bool {
 		ele.ptr = CreateDoublyLinkedListNode(listNode)
 	}
 
-	item := ele.ptr.data.(*LRULinkedElement)
+	item := ele.ptr.Data.(*LRULinkedElement)
 	item.data = value
 	lru.cacheList.AddFrontAt(ele.ptr)
-	ele.ptr = lru.cacheList.head
+	ele.ptr = lru.cacheList.Head
 	lru.cacheMap[key] = ele
 	return true
 }

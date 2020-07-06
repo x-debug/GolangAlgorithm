@@ -10,7 +10,7 @@ type MultiSet struct {
 	used        uint
 	cap         uint
 	last        uint
-	data        []interface{}
+	Data        []interface{}
 	onInsert    EventFun
 	onRemove    EventFun
 	compareFunc CompareFun
@@ -21,7 +21,7 @@ func CreateMS(compareFun CompareFun, onInsert EventFun, onRemove EventFun) *Mult
 	ms.used = 0
 	ms.cap = MsCap
 	ms.last = 0
-	ms.data = make([]interface{}, ms.cap)
+	ms.Data = make([]interface{}, ms.cap)
 	ms.onInsert = onInsert
 	ms.onRemove = onRemove
 	ms.compareFunc = compareFun
@@ -33,9 +33,9 @@ func (ms *MultiSet) delete(index uint) bool {
 		return false
 	}
 
-	item := ms.data[index]
+	item := ms.Data[index]
 	//把最后一个元素复制到删除的那个元素位置
-	ms.data[index] = ms.data[ms.used-1]
+	ms.Data[index] = ms.Data[ms.used-1]
 	ms.used--
 
 	if ms.onRemove != nil {
@@ -47,8 +47,8 @@ func (ms *MultiSet) delete(index uint) bool {
 func (ms *MultiSet) grow() {
 	ms.cap = ms.cap * 2
 	newBuffer := make([]interface{}, ms.cap)
-	copy(newBuffer, ms.data)
-	ms.data = newBuffer
+	copy(newBuffer, ms.Data)
+	ms.Data = newBuffer
 }
 
 /**
@@ -64,7 +64,7 @@ func (ms *MultiSet) Append(data interface{}) bool {
 		return false
 	}
 
-	ms.data[ms.used] = data
+	ms.Data[ms.used] = data
 	ms.used++
 	if ms.onInsert != nil {
 		ms.onInsert(ms, data, ms.used-1)
@@ -89,7 +89,7 @@ O(N)
 func (ms *MultiSet) Remove(data interface{}) bool {
 	var i uint = 0
 	for ; i < ms.used; i++ {
-		if ms.compareFunc(ms.data[i], data) {
+		if ms.compareFunc(ms.Data[i], data) {
 			ms.delete(i)
 			return true
 		}
@@ -104,7 +104,7 @@ O(N)
 func (ms MultiSet) Contains(data interface{}) bool {
 	var i uint = 0
 	for ; i < ms.used; i++ {
-		if ms.compareFunc(ms.data[i], data) {
+		if ms.compareFunc(ms.Data[i], data) {
 			return true
 		}
 	}
@@ -121,7 +121,7 @@ func (ms *MultiSet) Take() interface{} {
 	}
 
 	ms.last = ms.last % ms.used
-	item := ms.data[ms.last]
+	item := ms.Data[ms.last]
 	ms.delete(ms.last)
 	ms.last++
 	return item

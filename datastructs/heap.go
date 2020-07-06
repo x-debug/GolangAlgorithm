@@ -11,7 +11,7 @@ import (
 type Heap struct {
 	cap  uint
 	len  uint
-	data []interface{}
+	Data []interface{}
 	comp CompareFun
 }
 
@@ -22,8 +22,8 @@ func (heap *Heap) ShiftUp(index uint) {
 	for {
 		if index > 0 && index < heap.len {
 			parent := uint(math.Floor(float64((index - 1) / 2)))
-			if heap.comp(heap.data[index], heap.data[parent]) {
-				heap.data[index], heap.data[parent] = heap.data[parent], heap.data[index]
+			if heap.comp(heap.Data[index], heap.Data[parent]) {
+				heap.Data[index], heap.Data[parent] = heap.Data[parent], heap.Data[index]
 				//fmt.Printf("child<->parent:%d,%d\r\n", index, parent)
 			}
 			index = parent
@@ -43,12 +43,12 @@ func (heap *Heap) ShiftDown(index uint) {
 			right := 2*index + 2
 			if left < heap.len {
 				if right < heap.len {
-					if heap.comp(heap.data[right], heap.data[left]) {
+					if heap.comp(heap.Data[right], heap.Data[left]) {
 						left = right
 					}
 				}
-				if heap.comp(heap.data[left], heap.data[index]) {
-					heap.data[left], heap.data[index] = heap.data[index], heap.data[left]
+				if heap.comp(heap.Data[left], heap.Data[index]) {
+					heap.Data[left], heap.Data[index] = heap.Data[index], heap.Data[left]
 					//fmt.Printf("child<->parent:%d,%d\r\n", left, index)
 				}
 
@@ -66,7 +66,7 @@ func CreateHeap(cap uint, comp CompareFun) *Heap {
 	heap := new(Heap)
 	heap.len = 0
 	heap.cap = cap
-	heap.data = make([]interface{}, heap.cap)
+	heap.Data = make([]interface{}, heap.cap)
 	heap.comp = comp
 	return heap
 }
@@ -78,13 +78,13 @@ func (heap *Heap) Insert(element int) bool {
 	if heap.len >= heap.cap {
 		//扩容
 		newBuffer := make([]interface{}, heap.cap*2)
-		copy(newBuffer, heap.data)
-		heap.data = newBuffer
+		copy(newBuffer, heap.Data)
+		heap.Data = newBuffer
 		heap.cap = heap.cap * 2
 		fmt.Printf("heap 进行了一次扩容, 当然容量:%d\r\n", heap.cap)
 	}
 
-	heap.data[heap.len] = element
+	heap.Data[heap.len] = element
 	heap.len++
 	heap.ShiftUp(heap.len - 1)
 	return true
@@ -101,15 +101,15 @@ func (heap *Heap) Remove() interface{} {
 	if heap.len < heap.cap/2 {
 		//缩容
 		newBuffer := make([]interface{}, heap.cap/2)
-		copy(newBuffer, heap.data)
-		heap.data = newBuffer
+		copy(newBuffer, heap.Data)
+		heap.Data = newBuffer
 		heap.cap = heap.cap / 2
 		fmt.Printf("heap 进行了一次缩容, 当然容量:%d\r\n", heap.cap)
 	}
 
-	value := heap.data[0]
-	heap.data[0] = heap.data[heap.len-1]
-	heap.data[heap.len-1] = 0
+	value := heap.Data[0]
+	heap.Data[0] = heap.Data[heap.len-1]
+	heap.Data[heap.len-1] = 0
 	heap.len--
 	heap.ShiftDown(0)
 	return value
@@ -131,11 +131,11 @@ func (heap *Heap) RemoveAtIndex(index uint) interface{} {
 		panic("range out")
 	}
 
-	value := heap.data[index]
+	value := heap.Data[index]
 
 	for i := index; i < heap.len; i++ {
 		if i >= 0 {
-			heap.data[i] = heap.data[i+1]
+			heap.Data[i] = heap.Data[i+1]
 		}
 	}
 	heap.len--
@@ -156,7 +156,7 @@ func (heap *Heap) Replace(index uint, element int) bool {
 		return false
 	}
 
-	heap.data[index] = element
+	heap.Data[index] = element
 	heap.ShiftUp(index)
 	heap.ShiftDown(index)
 

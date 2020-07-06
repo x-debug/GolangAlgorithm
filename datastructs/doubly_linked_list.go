@@ -1,17 +1,17 @@
 package datastructs
 
 type DoublyLinkedListNode struct {
-	prev *DoublyLinkedListNode
+	Prev *DoublyLinkedListNode
 
-	next *DoublyLinkedListNode
+	Next *DoublyLinkedListNode
 
-	data interface{}
+	Data interface{}
 }
 
 type DoublyLinkedList struct {
-	head *DoublyLinkedListNode
+	Head *DoublyLinkedListNode
 
-	tail *DoublyLinkedListNode
+	Tail *DoublyLinkedListNode
 
 	compareFunc CompareFun
 
@@ -20,8 +20,8 @@ type DoublyLinkedList struct {
 
 func CreateDoublyLinkedList(compare CompareFun) *DoublyLinkedList {
 	dll := new(DoublyLinkedList)
-	dll.head = nil
-	dll.tail = nil
+	dll.Head = nil
+	dll.Tail = nil
 	dll.size = 0
 	dll.compareFunc = compare
 	return dll
@@ -29,29 +29,29 @@ func CreateDoublyLinkedList(compare CompareFun) *DoublyLinkedList {
 
 func CreateDoublyLinkedListNode(data interface{}) *DoublyLinkedListNode {
 	node := new(DoublyLinkedListNode)
-	node.data = data
+	node.Data = data
 
 	return node
 }
 
 func (dll *DoublyLinkedList) AddFront(data interface{}) bool {
 	node := new(DoublyLinkedListNode)
-	node.data = data
+	node.Data = data
 
 	return dll.AddFrontAt(node)
 }
 
 func (dll *DoublyLinkedList) AddFrontAt(node *DoublyLinkedListNode) bool {
-	node.prev = nil
+	node.Prev = nil
 
 	if dll.size == 0 { //it is empty
-		dll.head = node
-		dll.tail = node
-		node.next = nil //pointer to self
+		dll.Head = node
+		dll.Tail = node
+		node.Next = nil //pointer to self
 	} else {
-		node.next = dll.head
-		dll.head.prev = node
-		dll.head = node
+		node.Next = dll.Head
+		dll.Head.Prev = node
+		dll.Head = node
 	}
 
 	dll.size++
@@ -59,16 +59,16 @@ func (dll *DoublyLinkedList) AddFrontAt(node *DoublyLinkedListNode) bool {
 }
 
 func (dll *DoublyLinkedList) AddEndAt(node *DoublyLinkedListNode) bool {
-	node.next = nil
+	node.Next = nil
 
 	if dll.size == 0 { //it is empty
-		dll.head = node
-		dll.tail = node
-		node.prev = nil //pointer to self
+		dll.Head = node
+		dll.Tail = node
+		node.Prev = nil //pointer to self
 	} else {
-		node.prev = dll.tail
-		dll.tail.next = node
-		dll.tail = node
+		node.Prev = dll.Tail
+		dll.Tail.Next = node
+		dll.Tail = node
 	}
 
 	dll.size++
@@ -77,7 +77,7 @@ func (dll *DoublyLinkedList) AddEndAt(node *DoublyLinkedListNode) bool {
 
 func (dll *DoublyLinkedList) AddEnd(data interface{}) bool {
 	node := new(DoublyLinkedListNode)
-	node.data = data
+	node.Data = data
 
 	return dll.AddEndAt(node)
 }
@@ -88,17 +88,17 @@ func (dll *DoublyLinkedList) AddBefore(at *DoublyLinkedListNode, data interface{
 	}
 
 	node := new(DoublyLinkedListNode)
-	node.data = data
+	node.Data = data
 
-	node.prev = at.prev
-	node.next = at
+	node.Prev = at.Prev
+	node.Next = at
 
-	if at.prev != nil {
-		at.prev.next = node
+	if at.Prev != nil {
+		at.Prev.Next = node
 	} else {
-		dll.head = node
+		dll.Head = node
 	}
-	at.prev = node
+	at.Prev = node
 
 	dll.size++
 	return true
@@ -110,17 +110,17 @@ func (dll *DoublyLinkedList) AddAfter(at *DoublyLinkedListNode, data interface{}
 	}
 
 	node := new(DoublyLinkedListNode)
-	node.data = data
+	node.Data = data
 
-	node.next = at.next
-	node.prev = at
+	node.Next = at.Next
+	node.Prev = at
 
-	if at.next != nil {
-		at.next.prev = node
+	if at.Next != nil {
+		at.Next.Prev = node
 	} else {
-		dll.tail = node
+		dll.Tail = node
 	}
-	at.next = node
+	at.Next = node
 
 	dll.size++
 	return true
@@ -143,16 +143,16 @@ func (dll *DoublyLinkedList) DeleteNode(at *DoublyLinkedListNode) bool {
 		return false
 	}
 
-	if at.prev != nil {
-		at.prev.next = at.next
-	} else { //pointer to head
-		dll.head = at.next
+	if at.Prev != nil {
+		at.Prev.Next = at.Next
+	} else { //pointer to Head
+		dll.Head = at.Next
 	}
 
-	if at.next != nil {
-		at.next.prev = at.prev
-	} else { //pointer to next
-		dll.tail = at.prev
+	if at.Next != nil {
+		at.Next.Prev = at.Prev
+	} else { //pointer to Next
+		dll.Tail = at.Prev
 	}
 
 	dll.size--
@@ -164,8 +164,8 @@ func (dll *DoublyLinkedList) SearchForward(data interface{}) *DoublyLinkedListNo
 		return nil
 	}
 
-	for p := dll.tail; p != nil; p = p.prev {
-		if dll.compareFunc(p.data, data) {
+	for p := dll.Tail; p != nil; p = p.Prev {
+		if dll.compareFunc(p.Data, data) {
 			return p
 		}
 	}
@@ -178,8 +178,8 @@ func (dll *DoublyLinkedList) SearchBackward(data interface{}) *DoublyLinkedListN
 		return nil
 	}
 
-	for p := dll.head; p != nil; p = p.next {
-		if dll.compareFunc(p.data, data) {
+	for p := dll.Head; p != nil; p = p.Next {
+		if dll.compareFunc(p.Data, data) {
 			return p
 		}
 	}

@@ -119,7 +119,7 @@ func checkTreeOk(heap *Heap, t *testing.T) {
 	for ; index > 0; index-- {
 		parent := uint(math.Floor(float64((index - 1) / 2)))
 		if parent >= 0 {
-			if comp(heap.data[index], heap.data[parent]) {
+			if comp(heap.Data[index], heap.Data[parent]) {
 				t.Error("checkTreeOk error")
 			}
 		}

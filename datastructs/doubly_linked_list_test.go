@@ -67,9 +67,9 @@ func TestDoublyLinkedList_AddBefore(t *testing.T) {
 	doublyLookup(sll, t)
 	doublyLookNodes(sll, t)
 
-	sll.AddBefore(sll.head, "fuck")
-	sll.AddBefore(sll.head, "man")
-	sll.AddBefore(sll.head, "women")
+	sll.AddBefore(sll.Head, "fuck")
+	sll.AddBefore(sll.Head, "man")
+	sll.AddBefore(sll.Head, "women")
 
 	if sll.Size() != 8 {
 		t.Error("个数出现了问题")
@@ -96,9 +96,9 @@ func TestDoublyLinkedList_AddAfter(t *testing.T) {
 	doublyLookup(sll, t)
 	doublyLookNodes(sll, t)
 
-	sll.AddAfter(sll.tail, "fuck")
-	sll.AddAfter(sll.tail, "man")
-	sll.AddAfter(sll.tail, "women")
+	sll.AddAfter(sll.Tail, "fuck")
+	sll.AddAfter(sll.Tail, "man")
+	sll.AddAfter(sll.Tail, "women")
 
 	if sll.Size() != 8 {
 		t.Error("个数出现了问题")
@@ -126,9 +126,9 @@ func TestDoublyLinkedList_DeleteNode(t *testing.T) {
 	doublyLookup(sll, t)
 	doublyLookNodes(sll, t)
 
-	sll.DeleteNode(sll.head)
-	sll.DeleteNode(sll.tail)
-	sll.DeleteNode(sll.tail)
+	sll.DeleteNode(sll.Head)
+	sll.DeleteNode(sll.Tail)
+	sll.DeleteNode(sll.Tail)
 
 	if sll.Size() != 2 {
 		t.Error("个数出现了问题")
@@ -202,7 +202,7 @@ func TestDoublyLinkedList_SearchBackward(t *testing.T) {
 func doublyLookup(sll *DoublyLinkedList, t *testing.T) {
 	var i int = 0
 
-	for p := sll.head; p != nil; p = p.next {
+	for p := sll.Head; p != nil; p = p.Next {
 		i++
 	}
 
@@ -212,15 +212,15 @@ func doublyLookup(sll *DoublyLinkedList, t *testing.T) {
 }
 
 func doublyLookNodes(sll *DoublyLinkedList, t *testing.T) {
-	for p := sll.head; p != nil; p = p.next {
-		fmt.Println(p.data)
+	for p := sll.Head; p != nil; p = p.Next {
+		fmt.Println(p.Data)
 	}
 }
 
 func doubleOrderNodes(right []string, sll *DoublyLinkedList, t *testing.T) {
 	var i int = 0
-	for p := sll.head; p != nil; p = p.next {
-		if right[i] != p.data {
+	for p := sll.Head; p != nil; p = p.Next {
+		if right[i] != p.Data {
 			t.Error("元素次序不对")
 		}
 

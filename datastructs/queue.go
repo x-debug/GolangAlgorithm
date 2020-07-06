@@ -20,8 +20,8 @@ func (q *Queue) Dequeue() interface{} {
 		return nil
 	}
 
-	item := q.impl.head.data
-	q.impl.DeleteElement(q.impl.head)
+	item := q.impl.Head.Data
+	q.impl.DeleteElement(q.impl.Head)
 	return item
 }
 
@@ -30,7 +30,7 @@ func (q Queue) Peek() interface{} {
 		return nil
 	}
 
-	item := q.impl.head.data
+	item := q.impl.Head.Data
 	return item
 }
 

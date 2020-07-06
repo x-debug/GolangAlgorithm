@@ -1,15 +1,15 @@
 package datastructs
 
 type SinglyLinkedListNode struct {
-	next *SinglyLinkedListNode
+	Next *SinglyLinkedListNode
 
-	data interface{}
+	Data interface{}
 }
 
 type SinglyLinkedList struct {
-	head *SinglyLinkedListNode
+	Head *SinglyLinkedListNode
 
-	tail *SinglyLinkedListNode
+	Tail *SinglyLinkedListNode
 
 	compareFunc CompareFun
 
@@ -20,22 +20,22 @@ func CreateLinkedList(compare CompareFun) *SinglyLinkedList {
 	sll := new(SinglyLinkedList)
 	sll.size = 0
 	sll.compareFunc = compare
-	sll.head = nil
-	sll.tail = nil
+	sll.Head = nil
+	sll.Tail = nil
 	return sll
 }
 
 func (sll *SinglyLinkedList) AddAtFront(data interface{}) bool {
 	node := new(SinglyLinkedListNode)
-	node.data = data
-	node.next = sll.head
+	node.Data = data
+	node.Next = sll.Head
 
-	sll.head = node
+	sll.Head = node
 	sll.size++
 
 	//让tail也指向
 	if sll.size == 1 {
-		sll.tail = sll.head
+		sll.Tail = sll.Head
 	}
 
 	return true
@@ -43,18 +43,18 @@ func (sll *SinglyLinkedList) AddAtFront(data interface{}) bool {
 
 func (sll *SinglyLinkedList) AddAtEnd(data interface{}) bool {
 	node := new(SinglyLinkedListNode)
-	node.data = data
-	node.next = nil
+	node.Data = data
+	node.Next = nil
 
 	if sll.size > 0 {
-		sll.tail.next = node
+		sll.Tail.Next = node
 	}
-	sll.tail = node
+	sll.Tail = node
 	sll.size++
 
 	//让head也指向
 	if sll.size == 1 {
-		sll.head = sll.tail
+		sll.Head = sll.Tail
 	}
 	return true
 }
@@ -68,9 +68,9 @@ func (sll SinglyLinkedList) Size() int {
 }
 
 func (sll *SinglyLinkedList) Search(data interface{}) interface{} {
-	for p := sll.head; p != nil; p = p.next {
-		if sll.compareFunc(p.data, data) {
-			return p.data
+	for p := sll.Head; p != nil; p = p.Next {
+		if sll.compareFunc(p.Data, data) {
+			return p.Data
 		}
 	}
 
@@ -87,22 +87,22 @@ func (sll *SinglyLinkedList) DeleteNode(data interface{}) interface{} {
 
 	var prev *SinglyLinkedListNode = nil
 
-	for p := sll.head; p != nil; p = p.next {
-		if sll.compareFunc(p.data, data) {
+	for p := sll.Head; p != nil; p = p.Next {
+		if sll.compareFunc(p.Data, data) {
 			if prev != nil {
-				prev.next = p.next
+				prev.Next = p.Next
 			}
 
-			if sll.head == p {
-				sll.head = sll.head.next
+			if sll.Head == p {
+				sll.Head = sll.Head.Next
 			}
 
-			if sll.tail == p {
-				sll.tail = prev
+			if sll.Tail == p {
+				sll.Tail = prev
 			}
 
 			sll.size--
-			return p.data
+			return p.Data
 		}
 
 		prev = p
@@ -121,18 +121,18 @@ func (sll *SinglyLinkedList) DeleteElement(node *SinglyLinkedListNode) bool {
 
 	var prev *SinglyLinkedListNode = nil
 
-	for p := sll.head; p != nil; p = p.next {
+	for p := sll.Head; p != nil; p = p.Next {
 		if p == node {
 			if prev != nil {
-				prev.next = p.next
+				prev.Next = p.Next
 			}
 
-			if sll.head == p {
-				sll.head = sll.head.next
+			if sll.Head == p {
+				sll.Head = sll.Head.Next
 			}
 
-			if sll.tail == p {
-				sll.tail = prev
+			if sll.Tail == p {
+				sll.Tail = prev
 			}
 
 			sll.size--

@@ -1,15 +1,15 @@
 package datastructs
 
 type CircularLinkedListNode struct {
-	next *CircularLinkedListNode
+	Next *CircularLinkedListNode
 
-	data interface{}
+	Data interface{}
 }
 
 type CircularLinkedList struct {
-	head *CircularLinkedListNode
+	Head *CircularLinkedListNode
 
-	tail *CircularLinkedListNode
+	Tail *CircularLinkedListNode
 
 	compareFunc CompareFun
 
@@ -20,22 +20,22 @@ func CreateCircularLinkedList(compare CompareFun) *CircularLinkedList {
 	cll := new(CircularLinkedList)
 	cll.size = 0
 	cll.compareFunc = compare
-	cll.head = nil
+	cll.Head = nil
 	return cll
 }
 
 func (cll *CircularLinkedList) AddAtFront(data interface{}) bool {
 	node := new(CircularLinkedListNode)
-	node.data = data
+	node.Data = data
 
 	if cll.size == 0 { //it is empty
-		cll.head = node
-		cll.tail = node
-		node.next = node //pointer to self
+		cll.Head = node
+		cll.Tail = node
+		node.Next = node //pointer to self
 	} else {
-		node.next = cll.head
-		cll.head = node
-		cll.tail.next = cll.head
+		node.Next = cll.Head
+		cll.Head = node
+		cll.Tail.Next = cll.Head
 	}
 
 	cll.size++
@@ -44,16 +44,16 @@ func (cll *CircularLinkedList) AddAtFront(data interface{}) bool {
 
 func (cll *CircularLinkedList) AddAtEnd(data interface{}) bool {
 	node := new(CircularLinkedListNode)
-	node.data = data
+	node.Data = data
 
 	if cll.size == 0 { //it is empty
-		cll.head = node
-		cll.tail = node
-		node.next = node //pointer to self
+		cll.Head = node
+		cll.Tail = node
+		node.Next = node //pointer to self
 	} else {
-		cll.tail.next = node
-		cll.tail = node
-		node.next = cll.head
+		cll.Tail.Next = node
+		cll.Tail = node
+		node.Next = cll.Head
 	}
 
 	cll.size++
@@ -74,9 +74,9 @@ func (cll *CircularLinkedList) Search(data interface{}) interface{} {
 	}
 
 	index := 0
-	for p := cll.head; index < cll.size; p = p.next {
-		if cll.compareFunc(p.data, data) {
-			return p.data
+	for p := cll.Head; index < cll.size; p = p.Next {
+		if cll.compareFunc(p.Data, data) {
+			return p.Data
 		}
 
 		index++
@@ -93,22 +93,22 @@ func (cll *CircularLinkedList) DeleteNode(data interface{}) interface{} {
 	index := 0
 	var prev *CircularLinkedListNode = nil
 
-	for p := cll.head; index < cll.size; p = p.next {
-		if cll.compareFunc(p.data, data) {
+	for p := cll.Head; index < cll.size; p = p.Next {
+		if cll.compareFunc(p.Data, data) {
 			if prev != nil {
-				prev.next = p.next
+				prev.Next = p.Next
 			}
 
-			if cll.head == p {
-				cll.head = cll.head.next
+			if cll.Head == p {
+				cll.Head = cll.Head.Next
 			}
 
-			if cll.tail == p {
-				cll.tail = prev
+			if cll.Tail == p {
+				cll.Tail = prev
 			}
 
 			cll.size--
-			return p.data
+			return p.Data
 		}
 
 		prev = p

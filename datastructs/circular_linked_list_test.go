@@ -187,7 +187,7 @@ func TestCircularLinkedList_Search(t *testing.T) {
 func lookupCircular(sll *CircularLinkedList, t *testing.T) {
 	var i int = 0
 
-	for p := sll.head; p != sll.tail; p = p.next {
+	for p := sll.Head; p != sll.Tail; p = p.Next {
 		i++
 	}
 
@@ -198,8 +198,8 @@ func lookupCircular(sll *CircularLinkedList, t *testing.T) {
 
 func lookNodesCircular(sll *CircularLinkedList, t *testing.T) {
 	index := 0
-	for p := sll.head; index < sll.size; p = p.next {
-		fmt.Println(p.data)
+	for p := sll.Head; index < sll.size; p = p.Next {
+		fmt.Println(p.Data)
 		index++
 	}
 }

@@ -43,7 +43,7 @@ func TestLRUCache_Get(t *testing.T) {
 
 	lruLoopUp(lru, t)
 	fmt.Println(lru.cacheMap)
-	if lru.cacheList.head.data.(*LRULinkedElement).key != "hello3" {
+	if lru.cacheList.Head.Data.(*LRULinkedElement).key != "hello3" {
 		t.Error("Get顺序出现了问题")
 	}
 }
@@ -66,7 +66,7 @@ func TestLRUCache_Set(t *testing.T) {
 	lruLoopUp(lru, t)
 	fmt.Println(lru.cacheMap)
 	if v, ok := lru.cacheMap["hello1"]; ok {
-		t.Errorf("Set出现了问题, %s Len():%d", v.ptr.data, lru.cacheList.Size())
+		t.Errorf("Set出现了问题, %s Len():%d", v.ptr.Data, lru.cacheList.Size())
 	}
 }
 
@@ -100,7 +100,7 @@ func TestLRUCache_Del(t *testing.T) {
 }
 
 func lruLoopUp(lru *LRUCache, t *testing.T) {
-	for p := lru.cacheList.head; p != nil; p = p.next {
-		fmt.Println(p.data)
+	for p := lru.cacheList.Head; p != nil; p = p.Next {
+		fmt.Println(p.Data)
 	}
 }

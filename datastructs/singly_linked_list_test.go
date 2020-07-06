@@ -167,14 +167,14 @@ func TestSinglyLinkedList_DeleteElement(t *testing.T) {
 
 	//google world hello sorry baidu
 
-	sll.DeleteElement(sll.head)//1
+	sll.DeleteElement(sll.Head) //1
 	sll.DeleteNode("sorry123")
 	if sll.Size() != 4 {
 		t.Error("个数出现了问题")
 	}
 
-	sll.DeleteElement(sll.head)//1
-	sll.DeleteElement(sll.tail)//1
+	sll.DeleteElement(sll.Head) //1
+	sll.DeleteElement(sll.Tail) //1
 	if sll.Size() != 2 {
 		t.Error("个数出现了问题")
 	}
@@ -209,7 +209,7 @@ func TestSinglyLinkedList_Search(t *testing.T) {
 func lookup(sll *SinglyLinkedList, t *testing.T) {
 	var i int = 0
 
-	for p := sll.head; p != nil; p = p.next {
+	for p := sll.Head; p != nil; p = p.Next {
 		i++
 	}
 
@@ -219,7 +219,7 @@ func lookup(sll *SinglyLinkedList, t *testing.T) {
 }
 
 func lookNodes(sll *SinglyLinkedList, t *testing.T) {
-	for p := sll.head; p != nil; p = p.next {
-		fmt.Println(p.data)
+	for p := sll.Head; p != nil; p = p.Next {
+		fmt.Println(p.Data)
 	}
 }
