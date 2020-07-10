@@ -32,3 +32,13 @@ func (s Stack) IsEmpty() bool {
 func (s Stack) Size() int {
 	return s.impl.Size()
 }
+
+func (s Stack) Peek() interface{} {
+	if s.IsEmpty() {
+		return nil
+	}
+
+	data := s.impl.Head.Data
+
+	return data
+}
