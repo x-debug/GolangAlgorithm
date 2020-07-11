@@ -16,7 +16,7 @@
 
 - [x] Queue
 
-SkipList :muscle:
+- [x] SkipList
 
 Sort :muscle: 
 * Insertion Sort
