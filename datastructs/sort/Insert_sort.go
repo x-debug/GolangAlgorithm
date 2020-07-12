@@ -7,14 +7,13 @@ func InsertSort(arr []*datastructs.SortedElement) {
 		return
 	}
 	//从0~i就是有序节点
-	for i := 0; i < len(arr)-1; i++ {
-		k := i + 1 //无序的节点列表
-		j := i
-
+	for i := 1; i < len(arr); i++ {
+		j := i - 1
+		value := arr[i]
 		//挨个比较有序列表
-		for ; j >= 0 && arr[k].Key < arr[j].Key; j-- {
+		for ; j >= 0 && value.Key < arr[j].Key; j-- {
 			arr[j+1] = arr[j]
 		}
-		arr[j+1] = arr[k]
+		arr[j+1] = value
 	}
 }
