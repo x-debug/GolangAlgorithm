@@ -19,9 +19,9 @@
 - [x] SkipList
 
 Sort :muscle: 
-* Insertion Sort
-* Merge Sort
-* Quick Sort
+* - [x] Insertion Sort
+* - [x] Merge Sort
+* - [x] Quick Sort
 * Shell Sort
 * Heap Sort
 
